@@ -1,181 +1,399 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 import { getNextStaticProps } from '@faustjs/next';
 
 import { GetStaticPropsContext } from 'next';
 import Head from 'next/head';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { CTA, Footer, Header, Hero, Posts } from 'components';
 import styles from 'scss/pages/home.module.scss';
 import { client } from 'client';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 
 export default function Page() {
-  const { usePosts, useQuery } = client;
+  const { useQuery } = client;
   const generalSettings = useQuery().generalSettings;
-  const posts = usePosts({
-    first: 6,
-    where: {
-      categoryName: 'uncategorized',
-    },
-  });
+  const [loading, setLoading] = useState(false);
+  const { asPath } = useRouter();
+
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted) {
+
+      if (asPath == '/') {
+        setLoading(true);
+        setTimeout(() => {
+          let great = document.getElementById('greetings');
+          great.style.display = 'block';
+          setTimeout(() => {
+            setLoading(false);
+          }, 700);
+        }, 1000);
+
+
+      }
+    }
+    return () => {
+      isMounted = false;
+    }
+
+  }, [asPath]);
 
   return (
     <>
-      <Header
-        title={generalSettings.title}
-        description={generalSettings.description}
-      />
+      {
+        loading ?
+          <>
+            <div id="generalPreloader" className={styles.generalPreloader}>
+              <div id="demoPreloader" className={`${styles.demoPreloader} aos-init aos-animate`}
+              >
+                {/* <div id="firstDot" className={`${styles.dot} ${styles.firstDot}`}></div>
+                    <div id="secondDot" className={`${styles.dot} ${styles.secondDot}`}></div>
+                    <div id="thirdDot" className={`${styles.dot} ${styles.thirdDot}`}></div> */}
+                <img className="" src="/images/1488.gif"
+                  data-aos="zoom-in"
+                  data-aos-duration="3000"
+                />
+              </div>
+              <div id="greetings" className={`${styles.greetings}`} style={{ display: "none" }}> <h3><strong>Bem-vindo</strong></h3></div>
+            </div>
+          </>
+          :
+          <>
+            <Header
+              title={generalSettings.title}
+              description={generalSettings.description}
+            />
 
-      <Head>
-        <title>
-          {generalSettings.title} - {generalSettings.description}
-        </title>
-      </Head>
+            <Head>
+              <title>
+                {generalSettings.title} - {generalSettings.description}
+              </title>
+            </Head>
 
-      <main className="content">
-        <Hero
-          title="Get Started with Faust.js"
-          buttonText="Developer Docs"
-          buttonURL="https://faustjs.org"
-          button2Text="Faust.js on GitHub"
-          button2URL="https://github.com/wpengine/faustjs"
-          bgImage="/images/headless_hero_background.jpg"
-          id={styles.home_hero}
-        >
-          <p>
-            WP&nbsp;Engine’s Faust.js Framework includes this example
-            project, the{' '}
-            <a href="https://wordpress.org/plugins/faustwp/">
-              FaustWP plugin
-            </a>
-            ,{' '}
-            <a href="https://github.com/wpengine/faustjs">headless packages</a>,
-            and{' '}
-            <a href="https://faustjs.org/docs/tutorial/dev-env-setup">
-              tutorials
-            </a>{' '}
-            to make building headless WordPress sites fast and fun.
-          </p>
-        </Hero>
-        <section className={styles.explore}>
-          <div className="wrap">
-            <h2>Explore this Example Project</h2>
-            <p>
-              This headless example project uses{' '}
-              <a href="https://nextjs.org/">Next.js</a>,{' '}
-              <a href="https://graphql.org/">GraphQL</a>,{' '}
-              <a href="https://gqty.dev">GQty</a> and the{' '}
-              <a href="https://github.com/wpengine/faustjs">
-                WP&nbsp;Engine headless packages
-              </a>{' '}
-              for WordPress integration. Dive in and edit this template at{' '}
-              <code>src/pages/index.tsx</code> or discover more below.
-            </p>
-            <div className={styles.features}>
-              <div className={styles.feature}>
-                <h3>Static Site Generation</h3>
+            <div id="content" className={`${styles.content} `}  >
+              <div id="backgroundImage" className={styles.backgroundImage}>
+                <div id="backgroundColor" className={`${styles.backgroundColor}  `}>
+                  <div className={styles.backgroundColorInfo}>
+                    <h1
+                      data-aos="zoom-in"
+                      data-aos-offset="200"
+                      data-aos-delay="0"
+                      data-aos-duration="2000"
+                      data-aos-easing="ease-in-out"
+                      data-aos-mirror="false"
+                      data-aos-once="true"
+                    // data-aos-anchor-placement="top-bottom"
+                    >
+                      <strong>
+                        Faust.js + AOS Library
+                      </strong>
+                    </h1>
+                    <p
+                      data-aos="zoom-out"
+                      data-aos-offset="200"
+                      data-aos-delay="0"
+                      data-aos-duration="2000"
+                      data-aos-easing="ease-in-out"
+                      data-aos-mirror="false"
+                      data-aos-once="true"
+                    // data-aos-anchor-placement="top-bottom"
+                    >
+                      At the time of writing this code, I was working on developing a website with <Link href="https://legacy.faustjs.org/" legacyBehavior><a target="_blank">faust.js (the legacy version)</a></Link> on the front-end and wordpress on the back-end, it was a big goal to implement loading and on scroll animations, during my research I found this amazing <Link href="https://michalsnik.github.io/aos/" legacyBehavior><a target="_blank">AOS (Animation On Scroll) library</a></Link> , so I decided to share the demo I built.
+                    </p>
+
+                    <p
+                      data-aos="flip-left"
+                      data-aos-offset="120"
+                      data-aos-duration="2000"
+                      data-aos-easing="ease-in-out"
+                      data-aos-mirror="false"
+                      data-aos-once="true"
+                    // data-aos-anchor-placement="top-bottom"
+
+                    >
+                      More info in the project readme file, for now just scroll down
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+
+
+
+              <div id="" className={styles.fade}
+                data-aos="fade-up"
+                data-aos-offset="200"
+                data-aos-delay="0"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-out"
+                data-aos-mirror="false"
+                data-aos-once="true"
+                data-aos-anchor-placement="top-bottom"
+              >
+                <h2>
+                  What is Lorem Ipsum?
+                </h2>
                 <p>
-                  This example project uses Next.js&apos;{' '}
-                  <a href="https://nextjs.org/docs/basic-features/pages#two-forms-of-pre-rendering">
-                    Static Site Generation (SSR)
-                  </a>
-                  . SSG unlocks better performance by statically generating
-                  pages that can then be cached by a CDN.
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                  when an unknown printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but also the leap into
+                  electronic typesetting, remaining essentially unchanged. It was popularised in the
+                  1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+                  recently with desktop publishing software like Aldus PageMaker including versions
+                  of Lorem Ipsum.
+                </p>
+              </div>
+              <div id="" className={styles.fade}
+                data-aos="fade-up"
+                data-aos-offset="200"
+                data-aos-delay="0"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-out"
+                data-aos-mirror="false"
+                data-aos-once="true"
+                data-aos-anchor-placement="top-bottom"
+              >
+                <h2>
+                  Where does it come from?
+                </h2>
+                <p>
+                  Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
+                  in a piece of classical Latin literature from 45 BC, making it over 2000 years
+                  old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,
+                  looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum
+                  passage, and going through the cites of the word in classical literature, discovered
+                  the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de
+                  Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in
+                  45 BC. This book is a treatise on the theory of ethics, very popular during the
+                  Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes
+                  from a line in section 1.10.32.
+                </p>
+              </div>
+              <div id="" className={styles.fade}
+                data-aos="fade-down"
+                data-aos-offset="200"
+                data-aos-delay="0"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-out"
+                data-aos-mirror="false"
+                data-aos-once="true"
+                data-aos-anchor-placement="top-bottom"
+              >
+                <p>
+                  The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those
+                  interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum"
+                  by Cicero are also reproduced in their exact original form, accompanied by English
+                  versions from the 1914 translation by H. Rackham.
                 </p>
               </div>
 
-              <div className={styles.feature}>
-                <h3>Incremental Static Regeneration</h3>
+              <div id="" className={styles.bgLineColor}>
+                <div className={styles.fade}>
+                  <div className={styles.fadeColumns}>
+                    <div className={styles.left}
+                      data-aos="slide-right"
+                      // data-aos-offset="400"
+                      data-aos-delay="0"
+                      data-aos-duration="1500"
+                      data-aos-easing="ease-in-out"
+                      data-aos-mirror="false"
+                      data-aos-once="true"
+                      data-aos-anchor-placement="top-bottom"
+                    >
+                      <h2>
+                        Why do we use it?
+                      </h2>
+                      <p>
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                      </p>
+                    </div>
+                    <div className={styles.right}
+                      data-aos="slide-left"
+                      // data-aos-offset="400"
+                      // data-aos-delay="3000"
+                      data-aos-duration="1500"
+                      data-aos-easing="ease-in-out"
+                      data-aos-mirror="false"
+                      data-aos-once="true"
+                      data-aos-anchor-placement="top-bottom"
+
+                    // data-aos-anchor="#left"
+                    // data-aos-anchor-placement="center-center"
+                    >
+                      <h2>
+                        Where can I get some?
+                      </h2>
+                      <p>
+                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="standardLoremIpsum" className={styles.fade}
+                data-aos="slide-up"
+                data-aos-offset="200"
+                data-aos-delay="0"
+                data-aos-duration="1500"
+                data-aos-easing="ease"
+                data-aos-mirror="false"
+                data-aos-once="true"
+                data-aos-anchor-placement="top-bottom"
+              >
+                <h2>
+                  The standard Lorem Ipsum passage, used since the 1500s
+                </h2>
                 <p>
-                  This example project uses Next.js&apos;{' '}
-                  <a href="https://vercel.com/docs/concepts/next.js/incremental-static-regeneration">
-                    Incremental Static Regeneration (ISR)
-                  </a>
-                  . This allows you to revalidate static pages without having to
-                  rebuild your entire site. By default, Faust.js sets a{' '}
-                  <strong>
-                    15 minute <code>revalidate</code> time per page.
-                  </strong>{' '}
-                  <br />
-                  <a href="https://faustjs.org/docs/next/guides/ssr-ssg#setting-up-incremental-static-regeneration-isr">
-                    Learn more about how Faust.js uses ISR.
-                  </a>
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                </p>
+              </div>
+              <div id="" className={styles.fade}
+                data-aos="slide-down"
+                // data-aos-offset="200"
+                data-aos-delay="0"
+                data-aos-duration="1500"
+                data-aos-easing="ease"
+                data-aos-mirror="false"
+                data-aos-once="true"
+                data-aos-anchor="#standardLoremIpsum"
+                data-aos-anchor-placement="top-top"
+              >
+                <h2>
+                  Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
+                </h2>
+                <p>
+                  "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"                                </p>
+              </div>
+
+              <div id="" className={styles.bgLine}>
+                <div className={styles.fade}>
+                  <div className={styles.fadeColumns}>
+                    <div id="" className={styles.left}
+                      data-aos="slide-left"
+                      // data-aos-offset="400"
+                      data-aos-delay="0"
+                      data-aos-duration="2000"
+                      data-aos-easing="ease-in-out"
+                      data-aos-mirror="false"
+                      data-aos-once="true"
+                      data-aos-anchor-placement="top-bottom"
+                    >
+                      <img className="" width="600" src="/images/ai-nuclear-energy-background-future-innovation-disruptive-technology.jpg" />
+
+                    </div>
+                    <div className={styles.right}
+                      data-aos="slide-left"
+                      // data-aos-offset="400"
+                      data-aos-delay="200"
+                      data-aos-duration="2000"
+                      data-aos-easing="ease-in-out"
+                      data-aos-mirror="false"
+                      data-aos-once="true"
+                      data-aos-anchor-placement="top-bottom"
+                    >
+                      <h2>
+                        1914 translation by H. Rackham
+                      </h2>
+                      <p>
+                        "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="" className={styles.fade}
+                data-aos="slide-right"
+                // data-aos-offset="400"
+                data-aos-delay="200"
+                data-aos-duration="3000"
+                data-aos-easing="ease-in-out"
+                data-aos-mirror="false"
+                data-aos-once="true"
+                data-aos-anchor-placement="top-bottom"
+              >
+                <h2>
+                  Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
+                </h2>
+                <p>
+                  "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
                 </p>
               </div>
 
-              <div className={styles.feature}>
-                <h3>Ready for Atlas</h3>
+              <div id="" className={styles.bg}>
+                <div className={styles.fade}>
+                  <div className={styles.fadeColumns}>
+
+                    <div id="translationRackham" className={styles.left}
+                      data-aos="fade-left"
+                      // data-aos-offset="400"
+                      data-aos-delay="200"
+                      data-aos-duration="2500"
+                      data-aos-easing="ease-in-out"
+                      data-aos-mirror="ture"
+                      data-aos-once="true"
+                      data-aos-anchor-placement="top-bottom"
+                    >
+                      <h2>
+                        1914 translation by H. Rackham
+                      </h2>
+                      <p>
+                        "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided.
+                      </p>
+                    </div>
+
+                    <div id="" className={styles.right}
+                      data-aos="fade-left"
+                      // data-aos-offset="400"
+                      data-aos-delay="0"
+                      data-aos-duration="2000"
+                      data-aos-easing="ease-in-out"
+                      data-aos-mirror="false"
+                      data-aos-once="true"
+                      // data-aos-anchor="#translationRackham"
+                      data-aos-anchor-placement="top-bottom"
+                    >
+                      <img className="" width="600" src="/images/ai-nuclear-energy-background-future-innovation-disruptive-technology.jpg" />
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="" className={styles.fade}
+                data-aos="fade-right"
+                // data-aos-offset="400"
+                data-aos-delay="0"
+                data-aos-duration="2000"
+                data-aos-easing="ease"
+                data-aos-mirror="false"
+                data-aos-once="true"
+                data-aos-anchor-placement="top-bottom"
+              >
                 <p>
-                  <a href="https://wpengine.com/atlas">Atlas</a> is the complete
-                  Headless WordPress Platform for absurdly fast dynamic sites.
-                  One headless solution, one price, all in one place.
-                  <br />
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                  when an unknown printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but also the leap into
+                  electronic typesetting, remaining essentially unchanged. It was popularised in the
+                  1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+                  recently with desktop publishing software like Aldus PageMaker including versions
+                  of Lorem Ipsum.
                 </p>
               </div>
             </div>
-            <div className={styles.features}>
-              <div className={styles.feature}>
-                <h3>Global Styles and Fonts</h3>
-                <p>
-                  Add styles to load on every page, such as typography and
-                  layout rules, in <code>src/scss/main.scss</code>. The project
-                  adds{' '}
-                  <a href="https://necolas.github.io/normalize.css/">
-                    normalize.css
-                  </a>{' '}
-                  in <code>src/pages/_app.tsx</code>. Google Fonts are enqueued
-                  in <code>src/pages/_document.tsx</code>.
-                </p>
-              </div>
 
-              <div className={styles.feature}>
-                <h3>Hooks</h3>
-                <p>
-                  Fetch data from WordPress with <code>usePost</code>,{' '}
-                  <code>usePosts</code>, <code>useGeneralSettings</code> and
-                  other custom hooks. Use these hooks in your page templates to
-                  pass data to custom components. See{' '}
-                  <code>src/pages/index.tsx</code> for examples.
-                </p>
-              </div>
+            <Footer copyrightHolder={generalSettings.title} />
 
-              <div className={styles.feature}>
-                <h3>Components</h3>
-                <p>
-                  Add or edit components in the <code>src/components</code>{' '}
-                  folder. Find component styles at{' '}
-                  <code>src/scss/components</code>, which use{' '}
-                  <a href="https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css">
-                    CSS modules
-                  </a>{' '}
-                  to scope CSS to each component.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <Posts
-          posts={posts.nodes}
-          heading="Latest Posts"
-          intro="The Posts component in src/pages/index.tsx shows the latest six posts from the connected WordPress site."
-          headingLevel="h2"
-          postTitleLevel="h3"
-          id={styles.post_list}
-        />
-        <CTA
-          title="Questions or comments?"
-          buttonText="Join the discussion on GitHub"
-          buttonURL="https://github.com/wpengine/faustjs/discussions"
-          headingLevel="h2"
-        >
-          <p>
-            We welcome feature requests, bug reports and questions in the{' '}
-            <a href="https://github.com/wpengine/faustjs">
-              Headless Framework GitHub repository
-            </a>
-            .
-          </p>
-        </CTA>
-      </main>
-      <Footer copyrightHolder={generalSettings.title} />
+          </>
+      }
     </>
   );
 }

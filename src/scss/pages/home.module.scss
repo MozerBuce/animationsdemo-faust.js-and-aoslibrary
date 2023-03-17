@@ -2,33 +2,183 @@
 
 @import "scss/variables";
 
-.explore {
-	margin: 5em 0 5em;
+// .explore {
+// 	margin: 5em 0 5em;
+// }
+
+// #post_list {
+// 	padding: 5em 0 6em;
+// 	background-color: $color-light-gray;
+// }
+
+// @media screen and (min-width: $breakpoint-medium) {
+// 	#home_hero h1 {
+// 		max-width: 40%; // Reduced from 80% on the front-page only to wrap the headline.
+// 	}
+
+// 	.features {
+// 		column-gap: 20px;
+// 		display: grid;
+// 		grid-template-columns: 1fr 1fr 1fr;
+
+// 		strong {
+// 			font-weight: bold;
+// 		}
+// 	}
+
+// 	#post_list :global(.posts) {
+// 		display: grid;
+// 		column-gap: 10px;
+// 		grid-template-columns: 1fr 1fr 1fr;
+// 	}
+// }
+
+.generalPreloader {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
-#post_list {
-	padding: 5em 0 6em;
-	background-color: $color-light-gray;
+.demoPreloader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-@media screen and (min-width: $breakpoint-medium) {
-	#home_hero h1 {
-		max-width: 40%; // Reduced from 80% on the front-page only to wrap the headline.
-	}
+.greetings {
+    text-transform: uppercase;
+}
 
-	.features {
-		column-gap: 20px;
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: #0412aa;
+    border-radius: 50%;
+    margin: 0 5px;
+}
 
-		strong {
-			font-weight: bold;
-		}
-	}
+.firstDot {
+    animation: firstDot 1s infinite;
+}
 
-	#post_list :global(.posts) {
-		display: grid;
-		column-gap: 10px;
-		grid-template-columns: 1fr 1fr 1fr;
-	}
+.secondDot {
+    animation: secondDot 1s infinite;
+}
+
+.thirdDot {
+    animation: thirdDot 1s infinite;
+}
+
+@keyframes firstDot {
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+@keyframes secondDot {
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes thirdDot {
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+.content {
+    margin: 0 auto;
+    padding: 0;
+
+}
+
+.backgroundImage {
+    background-image: url('/images/tech.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+.backgroundColor {
+    width: 100%;
+    height: 100%;
+    background: rgba(63, 81, 181, 0.3);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.backgroundColorInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	max-width: 1400px;
+
+}
+
+.fade {
+	margin: 0 auto;
+    padding: 20px 80px;
+	max-width: 1400px;
+
+}
+
+.bgLineColor {
+    background: #3a7ca5;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+
+}
+
+.bgLine {
+    background: #3a7ca5;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+
+}
+
+.bg {
+    margin: 0;
+    padding: 0;
+}
+
+.bgLine h2,
+.bg h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.fadeColumns {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 0;
+}
+
+.fadeColumns .left {
+    margin-right: 20px;
+    width: 50%;
+}
+
+.fadeColumns .right {
+    margin-left: 20px;
+    width: 50%;
 }
