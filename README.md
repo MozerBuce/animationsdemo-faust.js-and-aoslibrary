@@ -14,3 +14,5 @@ npm run dev
 ```
 
 [http://localhost:3000]()
+
+more info soon, i am still develping it...
