@@ -1,18 +1,41 @@
-# Next.js Headless WordPress Getting Started Example
+# Animations on Scroll Demo (Faust.js + Wordpress)
 
-⚠️ TRY THE NEW FAUST: This Example project uses the old version of Faust. We will only be providing ongoing support for critical bugs and vulnerabilities with this version. If you intended to use the new version of Faust, please follow this [getting started guide](https://faustjs.org/docs/getting-started). Read the [following announcement](https://faustjs.org/blog/sprint-22-update) that explains the re-release of Faust.js.
+## Description
 
-## Setup
+Welcome to our project! This is a small demo showing how can you easily use the Animations on Scroll Library with headless wordpress in the backend and faust.js in the frontend. With the knowledge gained here you can use it for React.js and Next,js projects.
 
-See the [setup steps](https://github.com/wpengine/faustjs#quick-start).
+About few weeks ago, i was working on a wordpress headless project and one of the main goal was to set animations on scroll, during my researches i found AOS Library, i had to perform some tests of the usage before implementing it in the main project, so i decided to improve it and share here.
 
-## Run it
+Basically this project just shows different animations on the componentes when your scroll down or up, but you can set it to what you what and have different animations.
+
+## Technologies
+- ### [Faust.js](https://legacy.faustjs.org/)
+  Actually, this is the legacy version right now but you can find the stable one [here](https://faustjs.org/) 
+- ### [Headless Wordpress](https://wordpress.org/)
+  Actually, wordpress is not headless, but if you follow the instructions provided on faust.js documentation you will turn it.
+- ### [AOS Library](https://michalsnik.github.io/aos/)
+
+## Install and run the project
+   To have this project running on your local environment, you just need to follow the steps below:
+
+1. Clone the project
+
+```bash
+git clone https://github.com/MozerBuce/animationsdemo-faust.js-and-aoslibrary.git
+```
+
+2. Install all dependencies
 
 ```bash
 npm install
+```
+
+3. Run the project
+
+```bash
 npm run dev
 ```
 
-[http://localhost:3000]()
-
-more info soon, i am still developing it...
+4. Connect to wordpress
+   
+   At this point you will have the project running on your local machine, but only the frontend and the animations, if you want to have dynamic information from the backend, wordpress, you need to turn your wordpress into headless and connect it to the frontend and you can follow the steps provided [here](https://legacy.faustjs.org/docs/next/getting-started#connecting-your-wordpress-site) to achieve this.
