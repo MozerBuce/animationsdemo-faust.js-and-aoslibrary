@@ -9,7 +9,7 @@ interface Props {
 }
 
 function Header({
-  title = 'Headless by WP Engine',
+  title = 'Demo Animations on Scroll',
   description,
 }: Props): JSX.Element {
   const { menuItems } = client.useQuery()
@@ -38,10 +38,10 @@ function Header({
               </li>
             ))}
             <li>
-              <Link href="https://github.com/wpengine/faustjs">
+              <Link href="https://github.com/MozerBuce">
                 <a
                   className="button"
-                  href="https://github.com/wpengine/faustjs">
+                  href="https://github.com/MozerBuce">
                   GitHub
                 </a>
               </Link>

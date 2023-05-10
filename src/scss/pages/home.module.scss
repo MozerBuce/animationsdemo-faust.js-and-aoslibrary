@@ -2,36 +2,6 @@
 
 @import "scss/variables";
 
-// .explore {
-// 	margin: 5em 0 5em;
-// }
-
-// #post_list {
-// 	padding: 5em 0 6em;
-// 	background-color: $color-light-gray;
-// }
-
-// @media screen and (min-width: $breakpoint-medium) {
-// 	#home_hero h1 {
-// 		max-width: 40%; // Reduced from 80% on the front-page only to wrap the headline.
-// 	}
-
-// 	.features {
-// 		column-gap: 20px;
-// 		display: grid;
-// 		grid-template-columns: 1fr 1fr 1fr;
-
-// 		strong {
-// 			font-weight: bold;
-// 		}
-// 	}
-
-// 	#post_list :global(.posts) {
-// 		display: grid;
-// 		column-gap: 10px;
-// 		grid-template-columns: 1fr 1fr 1fr;
-// 	}
-// }
 
 .generalPreloader {
     position: fixed;
@@ -56,49 +26,7 @@
     text-transform: uppercase;
 }
 
-.dot {
-    width: 10px;
-    height: 10px;
-    background-color: #0412aa;
-    border-radius: 50%;
-    margin: 0 5px;
-}
 
-.firstDot {
-    animation: firstDot 1s infinite;
-}
-
-.secondDot {
-    animation: secondDot 1s infinite;
-}
-
-.thirdDot {
-    animation: thirdDot 1s infinite;
-}
-
-@keyframes firstDot {
-    50% {
-        transform: translateY(5px);
-    }
-}
-
-@keyframes secondDot {
-    50% {
-        transform: translateY(-5px);
-    }
-}
-
-@keyframes thirdDot {
-    50% {
-        transform: translateY(5px);
-    }
-}
-
-.content {
-    margin: 0 auto;
-    padding: 0;
-    overflow-x: hidden;
-}
 
 .backgroundImage {
     background-image: url('/images/tech.jpg');
@@ -128,31 +56,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 1400px;
-
 }
 
-.fade {
-    margin: 0 auto;
-    padding: 20px 80px;
-    max-width: 1400px;
-
-}
 
 .bgLineColor {
     background: #3a7ca5;
     color: #fff;
-    margin: 0;
-    padding: 0;
+    overflow-x: hidden;
 
 }
 
 .bgLine {
     background: #3a7ca5;
     color: #fff;
-    margin: 0;
-    padding: 0;
-
 }
 
 .bg {

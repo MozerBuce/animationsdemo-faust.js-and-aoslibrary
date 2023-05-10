@@ -10,8 +10,8 @@ function Footer({ copyrightHolder = 'Company Name' }: Props): JSX.Element {
 
   return (
     <footer className={styles.main}>
-      <div className={styles.wrap}>
-        <p>{`© ${year} ${copyrightHolder}. All rights reserved.`}</p>
+      <div className={`${styles.wrap} text-center`}>
+        <p>{`© ${year} Mozer Buce. All rights reserved.`}</p>
       </div>
     </footer>
   );

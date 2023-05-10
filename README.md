@@ -14,6 +14,7 @@ Basically this project just shows different animations on the componentes when y
 - ### [Headless Wordpress](https://wordpress.org/)
   Actually, wordpress is not headless, but if you follow the instructions provided on faust.js documentation you will turn it.
 - ### [AOS Library](https://michalsnik.github.io/aos/)
+- ### [Bootstrap](https://getbootstrap.com/)
 
 ## Install and run the project
    To have this project running on your local environment, you just need to follow the steps below:
