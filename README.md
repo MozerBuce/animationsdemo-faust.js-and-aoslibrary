@@ -1,4 +1,6 @@
-# Animations on Scroll Demo (Faust.js + Wordpress)
+# [Animations on Scroll Demo (Faust.js + Wordpress)](https://animationsdemo-faust-js-and-aoslibrary.vercel.app/)
+
+# [Demo](https://animationsdemo-faust-js-and-aoslibrary.vercel.app/)
 
 ## Description
 
